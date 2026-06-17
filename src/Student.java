@@ -1,10 +1,7 @@
 import java.io.Serializable;
 import java.io.Serial;
 
-/**
- * The Student class represents a single student record.
- * Implements Serializable so objects can be freeze-dried (serialized) to files.
- */
+
 public class Student implements Serializable {
 
     @Serial
@@ -35,28 +32,19 @@ public class Student implements Serializable {
     public void setDepartment(String department) { this.department = department; }
     public void setGpa(double gpa) { this.gpa = gpa; }
 
-    /**
-     * Returns a human-readable string representation.
-     * Automatically called when printing a Student object.
-     */
+
     @Override
     public String toString() {
         return String.format("ID: %s | Name: %s | Dept: %s | GPA: %.2f",
                 studentId, name, department, gpa);
     }
 
-    /**
-     * Converts student to CSV format for TEXT file storage.
-     * Example: "S001,John Doe,CS,3.8"
-     */
+
     public String toFileString() {
         return studentId + "," + name + "," + department + "," + gpa;
     }
 
-    /**
-     * Creates a Student object from a CSV line.
-     * Static method - belongs to the class, not any instance.
-     */
+
     public static Student fromFileString(String line) {
         String[] parts = line.split(",");
         return new Student(parts[0], parts[1], parts[2], Double.parseDouble(parts[3]));

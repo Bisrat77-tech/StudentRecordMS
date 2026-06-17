@@ -1,10 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-/**
- * Manages CRUD operations (Create, Read, Update, Delete) for students.
- * Works with ANY storage type via the strategy pattern.
- */
+
 public class StudentManager {
 
     private List<Student> students;
@@ -35,9 +32,9 @@ public class StudentManager {
             storageType = type;
             // Load data from new storage type
             loadData();
-            System.out.println("\n✅ Switched to storage type: " + getStorageTypeName());
+            System.out.println("\n Switched to storage type: " + getStorageTypeName());
         } else {
-            System.out.println("❌ Invalid storage type! Use 1, 2, or 3.");
+            System.out.println(" Invalid storage type! Use 1, 2, or 3.");
         }
     }
 
@@ -66,7 +63,7 @@ public class StudentManager {
                     break;
             }
         } catch (IOException e) {
-            System.out.println("❌ Error saving data: " + e.getMessage());
+            System.out.println(" Error saving data: " + e.getMessage());
         }
     }
 
@@ -84,34 +81,26 @@ public class StudentManager {
                     break;
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("❌ Error loading data: " + e.getMessage());
+            System.out.println(" Error loading data: " + e.getMessage());
             students = new ArrayList<>();
         }
     }
 
-    // ========== CRUD OPERATIONS ==========
 
-    /**
-     * Add a new student
-     * Returns true if successful, false if ID already exists
-     */
     public boolean addStudent(Student student) {
         // Check for duplicate ID
         if (findStudentById(student.getStudentId()) != null) {
-            System.out.println("❌ Student with ID " + student.getStudentId() + " already exists!");
+            System.out.println(" Student with ID " + student.getStudentId() + " already exists!");
             return false;
         }
 
         students.add(student);
         saveData();
-        System.out.println("✅ Student added successfully!");
+        System.out.println(" Student added successfully!");
         return true;
     }
 
-    /**
-     * Find a student by ID
-     * Returns Student if found, null if not
-     */
+
     public Student findStudentById(String id) {
         for (Student s : students) {
             if (s.getStudentId().equalsIgnoreCase(id)) {
@@ -121,27 +110,21 @@ public class StudentManager {
         return null;
     }
 
-    /**
-     * Search and display student by ID
-     */
+
     public void searchAndDisplay(String id) {
         Student s = findStudentById(id);
         if (s != null) {
-            System.out.println("\n🔍 Student Found:");
+            System.out.println("\n Student Found:");
             System.out.println("  " + s);
         } else {
-            System.out.println("❌ Student with ID " + id + " not found.");
+            System.out.println(" Student with ID " + id + " not found.");
         }
     }
 
-    /**
-     * Update student information
-     * Returns true if successful, false if not found
-     */
     public boolean updateStudent(String id, String newName, String newDepartment, double newGpa) {
         Student s = findStudentById(id);
         if (s == null) {
-            System.out.println("❌ Student with ID " + id + " not found.");
+            System.out.println(" Student with ID " + id + " not found.");
             return false;
         }
 
@@ -156,42 +139,37 @@ public class StudentManager {
         }
 
         saveData();
-        System.out.println("✅ Student updated successfully!");
+        System.out.println(" Student updated successfully!");
         return true;
     }
 
-    /**
-     * Delete student by ID
-     * Returns true if successful, false if not found
-     */
+
     public boolean deleteStudent(String id) {
         Student s = findStudentById(id);
         if (s == null) {
-            System.out.println("❌ Student with ID " + id + " not found.");
+            System.out.println(" Student with ID " + id + " not found.");
             return false;
         }
 
         students.remove(s);
         saveData();
-        System.out.println("✅ Student deleted successfully!");
+        System.out.println(" Student deleted successfully!");
         return true;
     }
 
-    /**
-     * Display all students
-     */
+
     public void displayAllStudents() {
         if (students.isEmpty()) {
-            System.out.println("\n📭 No students in the system.");
+            System.out.println("\n No students in the system.");
             return;
         }
 
-        System.out.println("\n📚 ALL STUDENTS (" + students.size() + " records):");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("\n ALL STUDENTS (" + students.size() + " records):");
+        System.out.println("------------------------------------------------------");
         for (int i = 0; i < students.size(); i++) {
             System.out.println((i + 1) + ". " + students.get(i));
         }
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("------------------------------------------------------");
     }
 
     public List<Student> getAllStudents() {

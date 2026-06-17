@@ -1,8 +1,6 @@
 import java.util.*;
 
-/**
- * Generates statistical reports from student data.
- */
+
 public class ReportGenerator {
 
     private List<Student> students;
@@ -11,12 +9,10 @@ public class ReportGenerator {
         this.students = students;
     }
 
-    /**
-     * Generate and display complete report
-     */
+
     public void generateFullReport() {
         if (students.isEmpty()) {
-            System.out.println("\n📭 No data available for report.");
+            System.out.println("\n No data available for report.");
             return;
         }
 
@@ -27,24 +23,24 @@ public class ReportGenerator {
         Student highestStudent = getStudentWithHighestGpa();
         Student lowestStudent = getStudentWithLowestGpa();
 
-        System.out.println("\n╔══════════════════════════════════════════════════════════╗");
-        System.out.println("║                    STUDENT REPORT                        ║");
-        System.out.println("╚══════════════════════════════════════════════════════════╝");
-        System.out.println("┌────────────────────────────────────────────────────────┐");
-        System.out.printf("│  📊 Total Students:  %-40s │\n", total);
-        System.out.println("├────────────────────────────────────────────────────────┤");
-        System.out.printf("│  ⭐ Highest GPA:     %-40.2f │\n", highest);
+        System.out.println("\n==========================================================");
+        System.out.println("                    STUDENT REPORT                          ");
+        System.out.println("=============================================================");
+        System.out.println("-------------------------------------------------------------");
+        System.out.printf("│    Total Students:  %-40s │\n", total);
+        System.out.println("--------------------------------------------------------------");
+        System.out.printf("│    Highest GPA:     %-40.2f │\n", highest);
         if (highestStudent != null) {
             System.out.printf("│      (Student: %-41s │\n", highestStudent.getName());
         }
-        System.out.println("├────────────────────────────────────────────────────────┤");
-        System.out.printf("│  📉 Lowest GPA:      %-40.2f │\n", lowest);
+        System.out.println("---------------------------------------------------------------");
+        System.out.printf("│    Lowest GPA:      %-40.2f │\n", lowest);
         if (lowestStudent != null) {
             System.out.printf("│      (Student: %-41s │\n", lowestStudent.getName());
         }
-        System.out.println("├────────────────────────────────────────────────────────┤");
-        System.out.printf("│  📈 Average GPA:     %-40.2f │\n", average);
-        System.out.println("└────────────────────────────────────────────────────────┘");
+        System.out.println("---------------------------------------------------------------");
+        System.out.printf("│   Average GPA:     %-40.2f │\n", average);
+        System.out.println("---------------------------------------------------------------");
 
         // Department-wise breakdown
         generateDepartmentBreakdown();
@@ -90,8 +86,8 @@ public class ReportGenerator {
             deptMap.computeIfAbsent(s.getDepartment(), k -> new ArrayList<>()).add(s);
         }
 
-        System.out.println("\n📊 DEPARTMENT BREAKDOWN:");
-        System.out.println("┌────────────────────────────────────────────────────────┐");
+        System.out.println("\n DEPARTMENT BREAKDOWN:");
+        System.out.println("-----------------------------------------------------");
         for (Map.Entry<String, List<Student>> entry : deptMap.entrySet()) {
             String dept = entry.getKey();
             List<Student> deptStudents = entry.getValue();
@@ -103,6 +99,6 @@ public class ReportGenerator {
             System.out.printf("│  %-10s │ %3d students │ Avg GPA: %.2f │\n",
                     dept, deptStudents.size(), deptAvg);
         }
-        System.out.println("└────────────────────────────────────────────────────────┘");
+        System.out.println("------------------------------------------------------");
     }
 }

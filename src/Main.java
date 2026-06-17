@@ -12,11 +12,11 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("\n╔══════════════════════════════════════════════════════════╗");
-        System.out.println("║     STUDENT RECORD MANAGEMENT SYSTEM                     ║");
-        System.out.println("║     Java File I/O with Multiple Storage Methods          ║");
-        System.out.println("╚══════════════════════════════════════════════════════════╝");
-        System.out.println("\n📁 Current Storage: " + manager.getStorageTypeName());
+        System.out.println("\n ===========================================================");
+        System.out.println("         STUDENT RECORD MANAGEMENT SYSTEM                      ");
+        System.out.println("        Java File I/O with Multiple Storage Methods         "  );
+        System.out.println(" ============================================================");
+        System.out.println("\n Current Storage: " + manager.getStorageTypeName());
 
         boolean running = true;
 
@@ -54,10 +54,10 @@ public class Main {
                     break;
                 case 0:
                     running = false;
-                    System.out.println("\n👋 Thank you for using the system! Goodbye!");
+                    System.out.println("\n  Thank you for using the system! Goodbye!");
                     break;
                 default:
-                    System.out.println("❌ Invalid choice. Please try again.");
+                    System.out.println(" Invalid choice. Please try again.");
             }
         }
 
@@ -65,32 +65,32 @@ public class Main {
     }
 
     private static void displayMenu() {
-        System.out.println("\n╔══════════════════════════════════════════════════════════╗");
-        System.out.println("║                         MENU                             ║");
-        System.out.println("╠══════════════════════════════════════════════════════════╣");
-        System.out.println("║  1. Add Student                                          ║");
-        System.out.println("║  2. Search Student by ID                                 ║");
-        System.out.println("║  3. Update Student Information                           ║");
-        System.out.println("║  4. Delete Student                                       ║");
-        System.out.println("║  5. Display All Students                                 ║");
-        System.out.println("║  6. Generate Report (Total, Highest, Lowest, Average)   ║");
-        System.out.println("║  7. Create Backup (Buffered Streams)                     ║");
-        System.out.println("║  8. Change Storage Type                                  ║");
-        System.out.println("║  9. Display File Properties                              ║");
-        System.out.println("║  0. Exit                                                 ║");
-        System.out.println("╚══════════════════════════════════════════════════════════╝");
-        System.out.println("💾 Current Storage: " + manager.getStorageTypeName());
+        System.out.println("\n==========================================================");
+        System.out.println("                         MENU                               ");
+        System.out.println(" ===========================================================");
+        System.out.println("   1. Add Student                                           ");
+        System.out.println("   2. Search Student by ID                                  ");
+        System.out.println("   3. Update Student Information                            ");
+        System.out.println("   4. Delete Student                                        ");
+        System.out.println("   5. Display All Students                                  ");
+        System.out.println("   6. Generate Report (Total, Highest, Lowest, Average)     ");
+        System.out.println("   7. Create Backup (Buffered Streams)                      ");
+        System.out.println("   8. Change Storage Type                                   ");
+        System.out.println("   9. Display File Properties                               ");
+        System.out.println("   0. Exit                                                  ");
+        System.out.println(" ===========================================================");
+        System.out.println(" Current Storage: " + manager.getStorageTypeName());
     }
 
     private static void addStudent() {
-        System.out.println("\n➕ ADD NEW STUDENT");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("\n  ADD NEW STUDENT");
+        System.out.println("----------------------");
 
         String id = getStringInput("Enter Student ID (e.g., S001): ");
 
-        // Check if ID already exists
+
         if (manager.findStudentById(id) != null) {
-            System.out.println("❌ Student with this ID already exists!");
+            System.out.println(" Student with this ID already exists!");
             return;
         }
 
@@ -103,20 +103,20 @@ public class Main {
     }
 
     private static void searchStudent() {
-        System.out.println("\n🔍 SEARCH STUDENT");
-        System.out.println("━━━━━━━━━━━━━━━━");
+        System.out.println("\n SEARCH STUDENT");
+        System.out.println("-------------------");
         String id = getStringInput("Enter Student ID: ");
         manager.searchAndDisplay(id);
     }
 
     private static void updateStudent() {
-        System.out.println("\n✏️ UPDATE STUDENT");
-        System.out.println("━━━━━━━━━━━━━━━━");
+        System.out.println("\n️ UPDATE STUDENT");
+        System.out.println("--------------------");
         String id = getStringInput("Enter Student ID to update: ");
 
         Student existing = manager.findStudentById(id);
         if (existing == null) {
-            System.out.println("❌ Student not found!");
+            System.out.println(" Student not found!");
             return;
         }
 
@@ -148,13 +148,13 @@ public class Main {
     }
 
     private static void deleteStudent() {
-        System.out.println("\n🗑️ DELETE STUDENT");
-        System.out.println("━━━━━━━━━━━━━━━━");
+        System.out.println("\n DELETE STUDENT");
+        System.out.println("--------------------");
         String id = getStringInput("Enter Student ID to delete: ");
 
         Student existing = manager.findStudentById(id);
         if (existing == null) {
-            System.out.println("❌ Student not found!");
+            System.out.println(" Student not found!");
             return;
         }
 
@@ -164,7 +164,7 @@ public class Main {
         if (confirm.equalsIgnoreCase("y")) {
             manager.deleteStudent(id);
         } else {
-            System.out.println("❌ Deletion cancelled.");
+            System.out.println(" Deletion cancelled.");
         }
     }
 
@@ -174,8 +174,8 @@ public class Main {
     }
 
     private static void backupData() {
-        System.out.println("\n💾 BACKUP SYSTEM");
-        System.out.println("━━━━━━━━━━━━━━━━━━");
+        System.out.println("\n BACKUP SYSTEM");
+        System.out.println("-------------------");
 
         try {
             // Backup all three data files
@@ -200,13 +200,13 @@ public class Main {
             BackupService.listBackups();
 
         } catch (IOException e) {
-            System.out.println("❌ Backup failed: " + e.getMessage());
+            System.out.println(" Backup failed: " + e.getMessage());
         }
     }
 
     private static void changeStorageType() {
-        System.out.println("\n🔄 CHANGE STORAGE TYPE");
-        System.out.println("━━━━━━━━━━━━━━━━━━━━━━");
+        System.out.println("\n CHANGE STORAGE TYPE");
+        System.out.println("-------------------------");
         System.out.println("  1. TEXT File (CSV - human readable)");
         System.out.println("  2. BINARY File (Data streams - compact)");
         System.out.println("  3. SERIALIZATION (Object streams - easiest)");
@@ -235,7 +235,7 @@ public class Main {
             try {
                 return Integer.parseInt(scanner.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.print("❌ Please enter a valid number: ");
+                System.out.print(" Please enter a valid number: ");
             }
         }
     }
@@ -248,9 +248,9 @@ public class Main {
                 if (value >= min && value <= max) {
                     return value;
                 }
-                System.out.print("❌ Please enter a value between " + min + " and " + max + ": ");
+                System.out.print(" Please enter a value between " + min + " and " + max + ": ");
             } catch (NumberFormatException e) {
-                System.out.print("❌ Please enter a valid number: ");
+                System.out.print(" Please enter a valid number: ");
             }
         }
     }

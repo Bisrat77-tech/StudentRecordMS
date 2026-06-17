@@ -1,13 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-/**
- * Handles reading/writing students using OBJECT SERIALIZATION.
- * Uses: ObjectOutputStream, ObjectInputStream
- * Simplest code - saves entire objects at once!
- *
- * Requirement: Student class must implement Serializable (it does!)
- */
+
 public class SerializationFileManager {
 
     private File serFile;
@@ -31,10 +25,7 @@ public class SerializationFileManager {
         }
     }
 
-    /**
-     * Saves entire list of students as ONE object.
-     * This is the simplest approach - Java handles all the details.
-     */
+
     public void saveStudents(List<Student> students) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(serFile))) {
             out.writeObject(students);  // Freeze-dry the entire list
@@ -42,10 +33,7 @@ public class SerializationFileManager {
         }
     }
 
-    /**
-     * Loads entire list of students as ONE object.
-     * Must cast back to ArrayList<Student>.
-     */
+
     @SuppressWarnings("unchecked")
     public List<Student> loadStudents() throws IOException, ClassNotFoundException {
         if (!serFile.exists() || serFile.length() == 0) {
@@ -61,7 +49,7 @@ public class SerializationFileManager {
     }
 
     public void displayFileProperties() {
-        System.out.println("\n📁 SERIALIZATION FILE PROPERTIES:");
+        System.out.println("\n SERIALIZATION FILE PROPERTIES:");
         System.out.println("  ├─ Name: " + serFile.getName());
         System.out.println("  ├─ Path: " + serFile.getAbsolutePath());
         System.out.println("  ├─ Size: " + serFile.length() + " bytes");

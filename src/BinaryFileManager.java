@@ -1,14 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-/**
- * Handles reading/writing students to BINARY files.
- * Uses: DataOutputStream, DataInputStream
- * Not human-readable, but more compact and faster.
- *
- * IMPORTANT: Write order MUST match read order!
- * Order: writeUTF(id) -> writeUTF(name) -> writeUTF(dept) -> writeDouble(gpa)
- */
+
 public class BinaryFileManager {
 
     private File binaryFile;
@@ -32,10 +25,7 @@ public class BinaryFileManager {
         }
     }
 
-    /**
-     * Saves students to binary file.
-     * Format: [number of students] then [student1 data] [student2 data] ...
-     */
+
     public void saveStudents(List<Student> students) throws IOException {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(binaryFile))) {
             // First, write how many students are coming
@@ -52,10 +42,6 @@ public class BinaryFileManager {
         }
     }
 
-    /**
-     * Loads students from binary file.
-     * Must read in the SAME ORDER used for writing.
-     */
     public List<Student> loadStudents() throws IOException {
         List<Student> students = new ArrayList<>();
 
@@ -86,7 +72,7 @@ public class BinaryFileManager {
     }
 
     public void displayFileProperties() {
-        System.out.println("\n📁 BINARY FILE PROPERTIES:");
+        System.out.println("\n BINARY FILE PROPERTIES:");
         System.out.println("  ├─ Name: " + binaryFile.getName());
         System.out.println("  ├─ Path: " + binaryFile.getAbsolutePath());
         System.out.println("  ├─ Size: " + binaryFile.length() + " bytes");

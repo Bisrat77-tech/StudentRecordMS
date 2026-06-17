@@ -1,18 +1,12 @@
 import java.io.*;
 import java.util.*;
 
-/**
- * Handles reading/writing students to TEXT files.
- * Uses: FileWriter, PrintWriter, Scanner
- * Human-readable format: CSV (Comma Separated Values)
- */
+
 public class TextFileManager {
 
     private File textFile;
 
-    /**
-     * Constructor - sets up file location and creates directories if needed.
-     */
+
     public TextFileManager(String filePath) {
         textFile = new File(filePath);
 
@@ -34,10 +28,7 @@ public class TextFileManager {
         }
     }
 
-    /**
-     * Saves all students to the text file.
-     * Each student becomes one line.
-     */
+
     public void saveStudents(List<Student> students) throws IOException {
         // try-with-resources - automatically closes the writer
         try (PrintWriter writer = new PrintWriter(new FileWriter(textFile))) {
@@ -48,10 +39,7 @@ public class TextFileManager {
         }
     }
 
-    /**
-     * Loads all students from the text file.
-     * Returns empty list if file doesn't exist.
-     */
+
     public List<Student> loadStudents() throws IOException {
         List<Student> students = new ArrayList<>();
 
@@ -78,11 +66,9 @@ public class TextFileManager {
         return students;
     }
 
-    /**
-     * Displays file properties using File class methods.
-     */
+
     public void displayFileProperties() {
-        System.out.println("\n📁 TEXT FILE PROPERTIES:");
+        System.out.println("\n TEXT FILE PROPERTIES:");
         System.out.println("  ├─ Name: " + textFile.getName());
         System.out.println("  ├─ Path: " + textFile.getAbsolutePath());
         System.out.println("  ├─ Size: " + textFile.length() + " bytes");
