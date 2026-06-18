@@ -28,15 +28,15 @@ public class BinaryFileManager {
 
     public void saveStudents(List<Student> students) throws IOException {
         try (DataOutputStream out = new DataOutputStream(new FileOutputStream(binaryFile))) {
-            // First, write how many students are coming
+
             out.writeInt(students.size());
 
-            // Then write each student's data in FIXED ORDER
+
             for (Student s : students) {
-                out.writeUTF(s.getStudentId());    // String
-                out.writeUTF(s.getName());          // String
-                out.writeUTF(s.getDepartment());    // String
-                out.writeDouble(s.getGpa());        // double (8 bytes)
+                out.writeUTF(s.getStudentId());
+                out.writeUTF(s.getName());
+                out.writeUTF(s.getDepartment());
+                out.writeDouble(s.getGpa());
             }
             System.out.println("[BINARY] Saved " + students.size() + " students");
         }
@@ -51,10 +51,10 @@ public class BinaryFileManager {
         }
 
         try (DataInputStream in = new DataInputStream(new FileInputStream(binaryFile))) {
-            // First, read how many students are stored
+
             int count = in.readInt();
 
-            // Then read each student's data in the SAME ORDER as write
+
             for (int i = 0; i < count; i++) {
                 String id = in.readUTF();
                 String name = in.readUTF();

@@ -8,14 +8,14 @@ public class BackupService {
 
 
     public static void createBackup(File sourceFile) throws IOException {
-        // Create backup directory if it doesn't exist
+
         File backupDir = new File(BACKUP_DIR);
         if (!backupDir.exists()) {
             backupDir.mkdirs();
             System.out.println("[BACKUP] Created backup directory: " + backupDir.getAbsolutePath());
         }
 
-        // Create backup filename with timestamp
+
         String timestamp = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String backupName = sourceFile.getName().replace(".", "_backup_" + timestamp + ".");
         File backupFile = new File(backupDir, backupName);
@@ -24,7 +24,7 @@ public class BackupService {
         System.out.println("  Source: " + sourceFile.getAbsolutePath());
         System.out.println("  Dest:   " + backupFile.getAbsolutePath());
 
-        // Measure time with buffered streams
+
         long startTime = System.nanoTime();
         copyWithBufferedStreams(sourceFile, backupFile);
         long endTime = System.nanoTime();
@@ -36,11 +36,11 @@ public class BackupService {
 
 
     private static void copyWithBufferedStreams(File source, File dest) throws IOException {
-        // Check file type by extension to choose appropriate buffered streams
+
         String name = source.getName().toLowerCase();
 
         if (name.endsWith(".txt") || name.endsWith(".ser")) {
-            // TEXT file - use BufferedReader/BufferedWriter (character streams)
+
             try (BufferedReader reader = new BufferedReader(new FileReader(source));
                  BufferedWriter writer = new BufferedWriter(new FileWriter(dest))) {
 
@@ -51,14 +51,14 @@ public class BackupService {
                     writer.newLine();
                     lineCount++;
                 }
-                System.out.println("  📝 Copied " + lineCount + " lines");
+                System.out.println("   Copied " + lineCount + " lines");
             }
         } else {
-            // BINARY file - use BufferedInputStream/BufferedOutputStream (byte streams)
+
             try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(source));
                  BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(dest))) {
 
-                byte[] buffer = new byte[8192];  // 8KB buffer
+                byte[] buffer = new byte[8192];
                 int bytesRead;
                 int totalBytes = 0;
 
@@ -67,7 +67,7 @@ public class BackupService {
                     totalBytes += bytesRead;
                 }
 
-                System.out.println("  💾 Copied " + totalBytes + " bytes (" +
+                System.out.println("   Copied " + totalBytes + " bytes (" +
                         String.format("%.2f", totalBytes / 1024.0) + " KB)");
             }
         }

@@ -2,10 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Main entry point for the Student Record Management System.
- * Provides a text-based menu for all operations.
- */
+
 public class Main {
 
     private static StudentManager manager = new StudentManager();

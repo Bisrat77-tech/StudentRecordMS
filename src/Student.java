@@ -13,7 +13,7 @@ public class Student implements Serializable {
     private String department;
     private double gpa;
 
-    // Constructor - called when creating a new student
+
     public Student(String studentId, String name, String department, double gpa) {
         this.studentId = studentId;
         this.name = name;
@@ -21,13 +21,13 @@ public class Student implements Serializable {
         this.gpa = gpa;
     }
 
-    // ========== GETTERS ==========
+
     public String getStudentId() { return studentId; }
     public String getName() { return name; }
     public String getDepartment() { return department; }
     public double getGpa() { return gpa; }
 
-    // ========== SETTERS ==========
+
     public void setName(String name) { this.name = name; }
     public void setDepartment(String department) { this.department = department; }
     public void setGpa(double gpa) { this.gpa = gpa; }

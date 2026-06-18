@@ -5,32 +5,32 @@ import java.io.*;
 public class StudentManager {
 
     private List<Student> students;
-    private int storageType;  // 1=TEXT, 2=BINARY, 3=SERIAL
+    private int storageType;
     private TextFileManager textManager;
     private BinaryFileManager binaryManager;
     private SerializationFileManager serialManager;
 
     public StudentManager() {
         students = new ArrayList<>();
-        storageType = 1;  // Default to TEXT
+        storageType = 1;
 
-        // Initialize all three managers
+
         textManager = new TextFileManager("data/students.txt");
         binaryManager = new BinaryFileManager("data/students.dat");
         serialManager = new SerializationFileManager("data/students.ser");
 
-        // Load existing data
+
         loadData();
     }
 
-    // ========== STORAGE TYPE MANAGEMENT ==========
+
 
     public void setStorageType(int type) {
         if (type >= 1 && type <= 3) {
-            // Save current data before switching
+
             saveData();
             storageType = type;
-            // Load data from new storage type
+
             loadData();
             System.out.println("\n Switched to storage type: " + getStorageTypeName());
         } else {
@@ -47,7 +47,7 @@ public class StudentManager {
         }
     }
 
-    // ========== DATA PERSISTENCE ==========
+
 
     private void saveData() {
         try {
@@ -88,7 +88,7 @@ public class StudentManager {
 
 
     public boolean addStudent(Student student) {
-        // Check for duplicate ID
+
         if (findStudentById(student.getStudentId()) != null) {
             System.out.println(" Student with ID " + student.getStudentId() + " already exists!");
             return false;
@@ -180,7 +180,7 @@ public class StudentManager {
         return students.size();
     }
 
-    // ========== FILE PROPERTIES DISPLAY ==========
+
 
     public void displayCurrentFileProperties() {
         switch (storageType) {

@@ -10,14 +10,14 @@ public class TextFileManager {
     public TextFileManager(String filePath) {
         textFile = new File(filePath);
 
-        // Create parent directories (e.g., "data/" folder)
+
         File parentDir = textFile.getParentFile();
         if (parentDir != null && !parentDir.exists()) {
             parentDir.mkdirs();
             System.out.println("[TEXT] Created directory: " + parentDir.getAbsolutePath());
         }
 
-        // Create the file if it doesn't exist
+
         try {
             if (!textFile.exists()) {
                 textFile.createNewFile();
@@ -30,7 +30,7 @@ public class TextFileManager {
 
 
     public void saveStudents(List<Student> students) throws IOException {
-        // try-with-resources - automatically closes the writer
+
         try (PrintWriter writer = new PrintWriter(new FileWriter(textFile))) {
             for (Student s : students) {
                 writer.println(s.toFileString());
@@ -43,7 +43,7 @@ public class TextFileManager {
     public List<Student> loadStudents() throws IOException {
         List<Student> students = new ArrayList<>();
 
-        // Check if file exists and has content
+
         if (!textFile.exists() || textFile.length() == 0) {
             System.out.println("[TEXT] No existing data, starting fresh");
             return students;
